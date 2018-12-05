@@ -10,11 +10,19 @@ import java.util.List;
 
 
 public interface StudentRepository extends JpaRepository<Student,Integer>, JpaSpecificationExecutor<Student> {
-	Student findBysname(String sname);
-    void deleteByCnameAndSname(String cname,String name);
+	Student findBySname(String Sname);
+        static void deleteByCnameAndSname(String cname,String sname) {
+		// TODO Auto-generated method stub
+		
+	}
     @Modifying
     @Query("update Student set cname=:cname where id=:id")
     int updatecnameByid(@Param("id") Integer id,@Param("cname") String cname);
+//    
+//    @Modifying
+//    @Query("delete from Student where cname=:cname ")
+//    void deleteByCnameAndSname(@Param("cname") String cname);
+
 
     List<Student> findByCnameAndSnameNotNullOrderByIdDesc(String cname);
 

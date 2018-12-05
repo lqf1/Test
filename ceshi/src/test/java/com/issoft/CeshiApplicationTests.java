@@ -40,30 +40,30 @@ public class CeshiApplicationTests{
     @Test
     public void findAll(){
         List<Student>Students =studentService.findAll();
-        System.out.println(Students);
+        System.out.println("22222222"+Students);
     }
     @Test
     public void findAllSort(){
         Sort sort = new Sort(Sort.Direction.DESC,"id");
         List<Student>Students =studentService.findAllSort(sort);
-        System.out.println(Students);
+        System.out.println("33333333"+Students);
     }
     @Test
     public void findBySname(){
-       Student student =studentService.findBySname("丽丽");
-        System.out.println(student);
+       Student student =studentService.findBySname("丽丽李");
+        System.out.println("44444444"+student);
     }
     @Test
     public void updateStudents(){
        Student Student=studentService.findOne(4);
        Student.setCname("语文");
        Student result =studentService.updateStudent(Student);
-        System.out.println(result);
+        System.out.println("55555555"+result);
     }
     @Test
     public void updatecnameByid(){
         int count =studentService.updatecnameByid(3,"丽丽");
-        System.out.println(count);
+        System.out.println("66666666"+count);
     }
     @Test
     public void insertStudent(){
@@ -71,17 +71,22 @@ public class CeshiApplicationTests{
        Student.setCname("语文");
        Student.setSname("丽丽李");
        Student result =studentService.updateStudent(Student);
-        System.out.println(result);
+        System.out.println("77777777"+result);
     }
-//    @Test
-//    public void deleteByCnameAndSname(){
-//       studentService.deleteStudentByID("语文","丽丽李");
-//
-//    }
+    @Test
+    public void deleteByCnameAndSname(){
+       studentService.deleteByCnameAndSname("语文","丽丽李");
+
+    }
+    @Test
+    public void deleteById(){
+       studentService.deleteById(3);
+
+    }
     @Test
     public void findByCnameAndSnameNotNullOrderByIdDesc(){
-        List<Student>Students =studentService.findByCnameAndSnameNotNullOrderByIdDesc("1");
-        System.out.println(Students);
+        List<Student>Students =studentService.findByCnameAndSnameNotNullOrderByIdDesc("3");
+        System.out.println("88888888"+Students);
     }
     @Test
     public void findOneC(){
@@ -90,7 +95,7 @@ public class CeshiApplicationTests{
         Root<Student>Student = c.from(Student.class);
         c.select(Student).where(cb.equal(Student.get("语文"),"丽丽李"));
        Student result =em.createQuery(c).getSingleResult();
-        System.out.println(result);
+        System.out.println("999999999"+result);
     }
     @Test
     public void page(){
@@ -103,8 +108,8 @@ public class CeshiApplicationTests{
             e.printStackTrace();
         }
        Map result =studentService.getPage(searchParameters);
-        System.out.println(result.get("total"));
-        System.out.println(result.get("students"));
+        System.out.println("00000000"+result.get("total"));
+        System.out.println("00000000"+result.get("students"));
     }
 
 }

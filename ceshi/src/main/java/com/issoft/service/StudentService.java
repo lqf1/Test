@@ -4,6 +4,7 @@ package com.issoft.service;
 import com.issoft.domain.Student;
 import com.issoft.domain.StudentRepository;
 
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -11,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.*;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -45,7 +47,7 @@ public class StudentService {
        return studentRepository.findAll(sort);
     }
     public Student findBySname(String sname){
-        return studentRepository.findBysname(sname);
+        return studentRepository.findBySname(sname);
     }
 
     /**
@@ -66,10 +68,24 @@ public class StudentService {
     public List<Student> findByCnameAndSnameNotNullOrderByIdDesc(String cname){
         return studentRepository.findByCnameAndSnameNotNullOrderByIdDesc(cname);
     }
+   
+    
+    
+    //删除
+
+    @Test
     @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
-    public void deleteByCnameAndSname(String Cname,String Sname){
-       studentRepository.deleteByCnameAndSname(Cname,Sname);
+    public void deleteById(Integer id){
+        studentRepository.delete(id);
     }
+    
+    @Test
+    @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
+    public void deleteByCnameAndSname(String cname,String sname ){
+    	StudentRepository.deleteByCnameAndSname(cname,sname);
+    }
+   
+    
     public Map getPage( Map searchParameters){
     
         //初始化数据
