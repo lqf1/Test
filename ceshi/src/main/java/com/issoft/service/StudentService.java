@@ -73,16 +73,16 @@ public class StudentService {
     
     //删除
 
-    @Test
+    
     @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
     public void deleteById(Integer id){
         studentRepository.delete(id);
     }
     
-    @Test
+   
     @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
     public void deleteByCnameAndSname(String cname,String sname ){
-    	StudentRepository.deleteByCnameAndSname(cname,sname);
+    	studentRepository.deleteByCnameAndSname(cname,sname);
     }
    
     

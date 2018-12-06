@@ -56,7 +56,7 @@ public class CeshiApplicationTests{
     @Test
     public void updateStudents(){
        Student Student=studentService.findOne(4);
-       Student.setCname("语文");
+       Student.setCname("数学");
        Student result =studentService.updateStudent(Student);
         System.out.println("55555555"+result);
     }
@@ -68,11 +68,12 @@ public class CeshiApplicationTests{
     @Test
     public void insertStudent(){
        Student Student= new Student();
-       Student.setCname("语文");
+       Student.setCname("语文1");
        Student.setSname("丽丽李");
        Student result =studentService.updateStudent(Student);
         System.out.println("77777777"+result);
     }
+    //删除
     @Test
     public void deleteByCnameAndSname(){
        studentService.deleteByCnameAndSname("语文","丽丽李");
@@ -83,17 +84,19 @@ public class CeshiApplicationTests{
        studentService.deleteById(3);
 
     }
+    //??
     @Test
     public void findByCnameAndSnameNotNullOrderByIdDesc(){
-        List<Student>Students =studentService.findByCnameAndSnameNotNullOrderByIdDesc("3");
+        List<Student>Students =studentService.findByCnameAndSnameNotNullOrderByIdDesc("语文");
         System.out.println("88888888"+Students);
     }
+    //    ??
     @Test
     public void findOneC(){
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Student> c = cb.createQuery(Student.class);
         Root<Student>Student = c.from(Student.class);
-        c.select(Student).where(cb.equal(Student.get("语文"),"丽丽李"));
+        c.select(Student).where(cb.equal(Student.get("语文1"),"丽丽李"));
        Student result =em.createQuery(c).getSingleResult();
         System.out.println("999999999"+result);
     }
